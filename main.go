@@ -38,7 +38,6 @@ func main() {
 		return
 	}
 	
-	
 
 	simulator.Simulation(data, Paths)
 	simulator.Printpaths(data, Paths)

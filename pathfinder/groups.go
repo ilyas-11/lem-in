@@ -26,25 +26,24 @@ func Grouppaths(data *types.FarmData) (*types.Path, error) {
 	for _, links := range data.Links[data.StartRoom] {
 		gpath := [][]string{}
 		gpath = append(gpath, BFS(data, links, map[string]bool{data.StartRoom: true}, false))
+		if len(gpath[0]) == 0 {
+			continue
+		}
 		Paths.Pathgroup = append(Paths.Pathgroup, gpath)
 		if len(gpath[0]) != 0 {
 			isempty = true
 		}
-
 	}
 	if !isempty {
 		return nil, fmt.Errorf("Error: no paths found from start to end")
 	}
-	
 
 	for i, path := range Paths.Pathgroup {
 
 		var hasDirectAccessToEnd bool
 
-		for _, room := range path {
-			if len(room) == 1 {
-				hasDirectAccessToEnd = true
-			}
+		if len(path[0]) == 1 {
+			hasDirectAccessToEnd = true
 		}
 
 		visited := MarkVisited(path, data)
