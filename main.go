@@ -37,7 +37,7 @@ func main() {
 		fmt.Println("No paths found from start to end.")
 		return
 	}
-	fmt.Println(Paths.Pathgroup)
+	
 	
 
 	simulator.Simulation(data, Paths)
